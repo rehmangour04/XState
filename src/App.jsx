@@ -1,4 +1,5 @@
 /** @format */
+
 import axios from "axios";
 import "./App.css";
 import { useEffect } from "react";
@@ -9,6 +10,7 @@ const App = () => {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
 
   const fetchCountries = async () => {
     try {
@@ -45,8 +47,6 @@ const App = () => {
 
   useEffect(() => {
     fetchCountries();
-    fetchStates();
-    fetchCities();
   }, []);
 
   const handleCountryChange = (event) => {
@@ -59,6 +59,11 @@ const App = () => {
     const selectedState = event.target.value;
     setSelectedState(selectedState);
     fetchCities(selectedCountry, selectedState);
+  };
+
+  const handleCityChange = (event) => {
+    const selectedCity = event.target.value;
+    setSelectedCity(selectedCity);
   };
 
   return (
@@ -80,7 +85,7 @@ const App = () => {
           </option>
         ))}
       </select>
-      <select id="city">
+      <select id="city" onChange={handleCityChange}>
         <option value="">Select City</option>
         {cities.map((city, index) => (
           <option key={index} value={city}>
@@ -88,6 +93,16 @@ const App = () => {
           </option>
         ))}
       </select>
+      {selectedCity ? (
+        <h1>
+          You selected {selectedCity},{" "}
+          <span className="city">
+            {selectedState}, {selectedCountry}
+          </span>
+        </h1>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

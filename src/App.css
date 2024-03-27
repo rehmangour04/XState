@@ -1,21 +1,5 @@
 /** @format */
-h1 {
-  text-align: center;
-  margin: 10px;
-}
-.container {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
 
-.container select {
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px;
-  font-family: sans-serif;
-}
-
-#country {
-  width: 50%;
+.city {
+  color: gray;
 }
